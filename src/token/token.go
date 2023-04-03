@@ -41,11 +41,13 @@ const (
   // keywords
   INT       = "int"
   FLOAT     = "float"
+  RETURN    = "return"
 )
 
 var keywords = map[string]TokenType{
   "int":       INT,
   "float":     FLOAT,
+  "return":    RETURN,
 }
 
 func LookupIdent(ident string) TokenType {
