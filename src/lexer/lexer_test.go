@@ -7,12 +7,19 @@ import (
 )
 
 func TestNextToken(t *testing.T) {
-  input := `42;`
+  input := `int a;
+a = 42;
+`
 
   tests := []struct {
     expectedType    token.TokenType
     expectedLiteral string
   }{
+    {token.INT, "int"},
+    {token.IDENT, "a"},
+    {token.SEMICOLON, ";"},
+    {token.IDENT, "a"},
+    {token.ASSIGN, "="},
     {token.NUM, "42"},
     {token.SEMICOLON, ";"},
   }
