@@ -93,8 +93,17 @@ func (p *Parser) parseIntStatement() *ast.IntStatement {
 
   stmt.Name = &ast.Identifier{Token: p.curToken, Value: p.curToken.Literal}
 
-  if !p.curTokenIs(token.SEMICOLON) {
+  if p.peekTokenIs(token.SEMICOLON) {
     p.nextToken()
+    return stmt
+  } else {
+    if !p.expectPeek(token.ASSIGN) {
+      return nil
+    }
+
+    for !p.curTokenIs(token.SEMICOLON) {
+      p.nextToken()
+    }
   }
 
   return stmt

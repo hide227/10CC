@@ -10,6 +10,7 @@ func TestNextToken(t *testing.T) {
   input := `int a;
 int b;
 int c;
+int d = 123;
 a = 42;
 b = 10;
 c = a - b;
@@ -28,6 +29,11 @@ return 0;
     {token.SEMICOLON, ";"},
     {token.INT, "int"},
     {token.IDENT, "c"},
+    {token.SEMICOLON, ";"},
+    {token.INT, "int"},
+    {token.IDENT, "d"},
+    {token.ASSIGN, "="},
+    {token.NUM, "123"},
     {token.SEMICOLON, ";"},
     {token.IDENT, "a"},
     {token.ASSIGN, "="},

@@ -21,8 +21,9 @@ func checkParserErrors(t *testing.T, p *Parser) {
 
 func TestIntStatements(t *testing.T) {
   input := `
-int x = 5;
-int y = 10;
+int x;
+int y;
+int z = 42;
 int foobar = 838383;
 `
 
@@ -34,9 +35,9 @@ int foobar = 838383;
   if program == nil {
     t.Fatalf("ParseProgram() returned nil")
   }
-  if len(program.Statements) != 3 {
+  if len(program.Statements) != 4 {
     t.Fatalf("program.Statements does not contain %d statements. got=%d\n",
-      3, len(program.Statements))
+      4, len(program.Statements))
   }
 
   tests := []struct {
@@ -44,6 +45,7 @@ int foobar = 838383;
   }{
     {"x"},
     {"y"},
+    {"z"},
     {"foobar"},
   }
 
